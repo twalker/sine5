@@ -2,7 +2,9 @@ var express = require('express'),
 	app = express(),
 	server = require('http').createServer(app),
 	io = require('socket.io').listen(server),
-	path = require('path');
+	path = require('path'),
+	stylus = require('stylus'),
+	nib = require('nib');
 
 server.listen(process.env.PORT || 3000);
 
@@ -12,7 +14,13 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(app.router);
 app.locals.pretty = true;
-app.use(require('stylus').middleware(__dirname + '/public'));
+//app.use(require('stylus').middleware(__dirname + '/public'));
+app.use(stylus.middleware({
+	src: __dirname + '/public',
+	compile: function(str, path){
+		return stylus(str).set('filename', path).set('compress', true).use(nib());
+	}
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.configure('development', function(){

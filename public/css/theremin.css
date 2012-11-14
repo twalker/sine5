@@ -1,12 +1,5 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-a {
-  color: #00b7ff;
-}
-line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
+body{padding:20px;font:14px "Lucida Grande",Helvetica,Arial,sans-serif}
+#chart svg{border:1px solid #999}
+line{fill:none;stroke:#000;shape-rendering:crispEdges}
+rect.bkey{fill:#000;stroke:#000}
+rect.wkey{fill:#fff;stroke:#000}
