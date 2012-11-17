@@ -1,60 +1,117 @@
-var theremin = (function(root){
-	return {
-		init: function(){
-			console.log('go, go, theremin!');
+var Theremin = (function(root){
+	var chart,
+		chartWidth = 800,
+		chartHeight = 500;
 
-			var socket = io.connect('http://localhost');
-			socket.on('server event', function (data) {
-				console.log(data);
-				socket.emit('client event', { from: 'client', to: 'server' });
-			});
-			window.setInterval(function(){
-				socket.emit('client event', { from: 'client', to: 'server' });
-			}, 1000);
+	var notes = ['A','A#Bb','B','C','C#Db','D','D#Eb','E','F','F#Gb','G','G#Ab'];
+	var natural = notes.filter(function(note){return note.length === 1});
 
-			var chart = d3.select("#chart").append("svg")
-				.attr('class', 'chart')
-				.attr("width", 800)
-				.attr("height", 500);
+	var data = [];
 
-			var Ws = [0, 23, 46, 69, 92, 115, 138];
-			var Bs = [14.33333, 41.66666, 82.25, 108.25, 134.75];
-			//var Bs = [14, 42, 82, 108, 135];
+	function Theremin(){
+		console.log('go, go, theremin!');
 
+		var socket = io.connect('http://localhost');
+		socket.on('server event', function (data) {
+			console.log(data);
+			socket.emit('client event', { from: 'client', to: 'server' });
+		});
+		/*
+		window.setInterval(function(){
+			socket.emit('client event', { from: 'client', to: 'server' });
+		}, 1000);
+		*/
+		socket.on('plot', this.plotRandom.bind(this));
+		chart = d3.select("#chart").append("svg")
+			.attr('class', 'chart')
+			.attr("width", chartWidth)
+			.attr("height", chartHeight);
+		//this.drawPianoAxis(chart, 4);
+		chart.selectAll('g')
+			.data(notes)
+			.enter()
+			.append('rect')
+			//.attr('y', function(d,i){return i*20;})
+			.attr('y', function(d,i){return (d.length === 1) ? (i*20) : (i*20 - 30);})
+			.attr('x', 0)
+			.attr('height', function(d, i){ return (d.length === 1) ? 15 : 9;})
+			.attr('width', 50)
+			.attr('class', function(d, i){ return 'key ' + (d.length === 1 ? 'white': 'black');});
+
+		chart.data(data).append('path').attr('class', 'random');
+	}
+
+	Theremin.prototype.plotRandom = function(msg){
+		console.log('plot', msg);
+
+		// push a new data point onto the back
+		data.push(msg.data);
+
+		var line = d3.svg.line()
+	    	//.interpolate(interpolation)
+			.x(function(d, i) { return x(i); })
+			.y(function(d, i) { return y(d); });
+			// redraw the line, and then slide it to the left
+			chart.select('path')
+				.attr("d", line)
+				.attr("transform", null)
+				.transition()
+				.ease("linear")
+				//.attr("transform", "translate(" + x(-1) + ")");
+
+		// pop the old data point off the front
+		data.shift();
+
+	};
+
+	Theremin.prototype.drawPianoAxis = function(chart, octaves){
+		var Ws = [0, 23, 46, 69, 92, 115, 138];
+		var Bs = [14.33333, 41.66666, 82.25, 108.25, 134.75];
+		for(var i=0; i < octaves; i++){
 			chart.selectAll('g')
 				.data(Ws)
 				.enter()
 				.append('rect')
-				.attr('y', function(d,i){return d;})
+				.attr('y', function(d, j){return d + (i*138);})
 				.attr('x', 0)
 				.attr('height', 23)
 				.attr('width', 120)
-				.attr('class', 'wkey');
+				.attr('class', 'key white');
+
 
 			chart.selectAll('g')
 				.data(Bs)
 				.enter()
 				.append('rect')
-				.attr('y', function(d,i){return d;})
+				.attr('y', function(d,j){return d + (i*138);})
 				.attr('x', 0)
 				.attr('height', 13)
 				.attr('width', 80)
-				.attr('class', 'bkey');
+				.attr('class', 'key black')
+			}
+		/*
+		chart.selectAll('g')
+			.data(Ws)
+			.enter()
+			.append('rect')
+			.attr('y', function(d,i){return d;})
+			.attr('x', 0)
+			.attr('height', 23)
+			.attr('width', 120)
+			.attr('class', 'key white');
 
-			/*
-			chart.append('circle').style('stroke', 'gray')
-			.style('fill', 'white')
-			.attr('r', 40)
-			.attr('cx', 50)
-			.attr('cy', 50);
-			*/
-
-			//this.drawPiano();
-		},
-
-		drawPiano: function(){
-			//console.log('drawing stuff', svg);
-
-		}
+		chart.selectAll('g')
+			.data(Bs)
+			.enter()
+			.append('rect')
+			.attr('y', function(d,i){return d;})
+			.attr('x', 0)
+			.attr('height', 13)
+			.attr('width', 80)
+			.attr('class', 'key black');
+		*/
 	};
+
+	return Theremin;
+
 })(window);

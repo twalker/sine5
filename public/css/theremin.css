@@ -1,5 +1,7 @@
 body{padding:20px;font:14px "Lucida Grande",Helvetica,Arial,sans-serif}
 #chart svg{border:1px solid #999}
 line{fill:none;stroke:#000;shape-rendering:crispEdges}
-rect.bkey{fill:#000;stroke:#000}
-rect.wkey{fill:#fff;stroke:#000}
+rect.key{shape-rendering:crispEdges}
+rect.black.key{fill:#000;stroke:#000}
+rect.white.key{fill:#fff;stroke:#000}
+path.random{stroke:#f00;fill:none;stroke-width:2px}

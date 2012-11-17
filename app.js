@@ -36,4 +36,7 @@ io.sockets.on('connection', function (socket) {
 	socket.on('client event', function (data) {
 		console.log(data);
 	});
+	setInterval(function(){
+		io.sockets.emit('plot', {data: Math.random(),timestamp: Date.now()})
+	}, 1000)
 });
