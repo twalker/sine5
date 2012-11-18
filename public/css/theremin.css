@@ -1,7 +1,5 @@
 body{padding:20px;font:14px "Lucida Grande",Helvetica,Arial,sans-serif}
-#chart svg{border:1px solid #999}
-line{fill:none;stroke:#000;shape-rendering:crispEdges}
-rect.key{shape-rendering:crispEdges}
-rect.black.key{fill:#000;stroke:#000}
-rect.white.key{fill:#fff;stroke:#000}
-path.random{stroke:#f00;fill:none;stroke-width:2px}
+#chart svg{font:10px sans-serif;border:1px solid #333}
+.line{fill:none;stroke:#f00;stroke-width:1.5px}
+.axis path,.axis line{fill:none;stroke:#008000;shape-rendering:crispEdges}
+.axis text{color:#00f}

@@ -8,6 +8,10 @@ var express = require('express'),
 
 server.listen(process.env.PORT || 3000);
 
+var random = function(min, max){
+	return Math.random() * (max - min) + min;
+};
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -21,6 +25,7 @@ app.use(stylus.middleware({
 		return stylus(str).set('filename', path).set('compress', true).use(nib());
 	}
 }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.configure('development', function(){
@@ -38,6 +43,8 @@ io.sockets.on('connection', function (socket) {
 		//console.log(data);
 	});
 	setInterval(function(){
-		io.sockets.emit('plot', {data: Math.random(),timestamp: Date.now()})
-	}, 1000)
+		io.sockets.emit('plot', {x: random(20,20000), timestamp: Date.now()})
+
+		//io.sockets.emit('plot', {x: Math.random()})
+	}, 100)
 });

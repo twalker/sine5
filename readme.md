@@ -1,4 +1,5 @@
 An experimental Theremin using a proximity sensor and javascript.
+-------------
 
 TODO:
 - get a d3 real-time chart going with websockets
@@ -15,10 +16,12 @@ TOLEARN:
 device:
 cdc_acm 1-1.5:1.0: ttyACM0: USB ACM device
 
+--------------
 
-helpful articles:
 
-arduino
+##helpful articles:
+
+###arduino
 http://blog.markloiseau.com/2012/05/install-arduino-ubuntu/
 http://www.emanueletessore.com/how-to-setup-a-node-js-and-arduino-development-environment-under-ubuntu-server-12-04/
 http://arduino.cc/playground/Learning/Linux
@@ -29,10 +32,11 @@ sudo echo 'asd' > /dev/ttyACM0
 dmesg
 
 
-chart
+###chart
 http://alignedleft.com/tutorials/d3/
 http://bost.ocks.org/mike/path/
+https://gist.github.com/1642989
 
-piano
+###piano
 https://developer.mozilla.org/th/demos/detail/html5-piano
 https://developer.cdn.mozilla.net/media/uploads/demos/M/i/MikeMnD/bbd077c574670ad3c70aab5aa64258be/html5-piano_1315774273_demo_package/index.html
