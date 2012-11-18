@@ -39,10 +39,29 @@ var Theremin = (function(root){
 			.attr('class', function(d, i){ return 'key ' + (d.length === 1 ? 'white': 'black');});
 
 		chart.data(data).append('path').attr('class', 'random');
+
+		// event handling
+		var buttons = [].slice.call(document.getElementsByClassName('action'));
+		buttons.forEach(function(el){
+			el.addEventListener('click', function(e){
+				e.preventDefault();
+				var action = e.currentTarget.value;
+				var actionMap = {
+					connect: function(){
+						socket = io.connect('http://localhost');
+					},
+					disconnect: function(){
+						socket.disconnect();
+					}
+				};
+				console.log(action);
+				actionMap[action]();
+			});
+		});
 	}
 
 	Theremin.prototype.plotRandom = function(msg){
-		console.log('plot', msg);
+		//console.log('plot', msg);
 
 		// push a new data point onto the back
 		data.push(msg.data);

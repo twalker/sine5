@@ -26,6 +26,7 @@ https://github.com/rwldrn/johnny-five/
 
 sudo chmod a+rw /dev/ttyACM0
 sudo echo 'asd' > /dev/ttyACM0
+dmesg
 
 
 chart

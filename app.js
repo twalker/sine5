@@ -31,10 +31,11 @@ app.get('/', function (req, res) {
 	res.render('index', { title: 'theremin' });
 });
 
+
 io.sockets.on('connection', function (socket) {
 	socket.emit('server event', { from: 'server', to: 'client' });
 	socket.on('client event', function (data) {
-		console.log(data);
+		//console.log(data);
 	});
 	setInterval(function(){
 		io.sockets.emit('plot', {data: Math.random(),timestamp: Date.now()})
