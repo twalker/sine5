@@ -9,6 +9,15 @@ html
 		script
 			window.onload = function(){
 				theremin.init();
+				var buttons = [].slice.call(document.getElementsByClassName('action'));
+				buttons.forEach(function(el){
+					el.addEventListener('click', function(e){
+						e.preventDefault();
+						var action = e.currentTarget.value;
+						console.log(action);
+						theremin[action]();
+					});
+				});
 			}
 	body
 		block content

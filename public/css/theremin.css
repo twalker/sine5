@@ -1,5 +1,6 @@
-body{padding:20px;font:14px "Lucida Grande",Helvetica,Arial,sans-serif}
-#chart svg{font:10px sans-serif;border:1px solid #333}
-.line{fill:none;stroke:#f00;stroke-width:1.5px}
+body{padding:20px;font:14px "Lucida Grande",Helvetica,Arial,sans-serif;background:rgba(0,0,0,0.95);color:#008000}
+button{color:#40ff40;border:1px solid #008000;border-radius:3px;background-color:transparent}
+#chart svg{font:10px sans-serif}
+.line{fill:none;stroke:#00e000;stroke-width:1.5px}
 .axis path,.axis line{fill:none;stroke:#008000;shape-rendering:crispEdges}
-.axis text{color:#00f}
+.axis text{fill:#008000}

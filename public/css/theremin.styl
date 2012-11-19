@@ -1,14 +1,24 @@
 body
 	padding: 20px
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
-	//background rgba(0,0,0,0.95);
+	background rgba(0,0,0,0.95);
+	color green
+
+#chart
+	//padding:20px
+	//border 1px solid #666
+button
+	color lighten(green, 50%)
+	border 1px solid green
+	border-radius 3px
+	background-color transparent
 
 #chart svg
 	font 10px sans-serif
-	border 1px solid #333
+
 .line
 	fill none
-	stroke #f00
+	stroke lighten(green, 25%)
 	stroke-width 1.5px
 	//shape-rendering crispEdges
 
@@ -19,4 +29,4 @@ body
 	shape-rendering crispEdges
 
 .axis text
-	color blue
+	fill green

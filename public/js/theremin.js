@@ -24,7 +24,7 @@ var theremin = (function(root){
 		.y(function(d, i) { return y(d); });
 
 	function init(){
-		var socket = this.socket = io.connect('http://localhost');
+		socket = io.connect('http://localhost');
 		socket.on('server event', function (data) {
 			console.log(data);
 			//socket.emit('client event', { from: 'client', to: 'server' });
@@ -59,7 +59,8 @@ var theremin = (function(root){
 			.data([data])
 			.attr("class", "line")
 			.attr("d", line);
-			socket.on('plot', plotRandom);
+		socket.on('plot', plotRandom);
+		//on();
 
 	}
 
@@ -84,8 +85,21 @@ var theremin = (function(root){
 	};
 
 
+	var on = function on(){
+		console.log('TODO')
+		//socket = io.connect('http://localhost');
+		//socket.on('plot', plotRandom);
+	};
+
+	var off = function off(){
+		console.log('TODO')
+		socket.disconnect();
+	};
+
 	return {
-		init: init
+		init: init,
+		on: on,
+		off: off
 	};
 
 })(window);
