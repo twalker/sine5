@@ -36,6 +36,8 @@ dmesg
 http://alignedleft.com/tutorials/d3/
 http://bost.ocks.org/mike/path/
 https://gist.github.com/1642989
+http://bl.ocks.org/mbostock
+http://alignedleft.com/tutorials/d3/an-svg-primer/
 
 ###piano
 https://developer.mozilla.org/th/demos/detail/html5-piano

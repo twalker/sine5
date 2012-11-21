@@ -5,6 +5,9 @@ var express = require('express'),
 	path = require('path'),
 	stylus = require('stylus'),
 	nib = require('nib');
+	five = require("johnny-five"),
+	board = new five.Board();
+
 
 server.listen(process.env.PORT || 3000);
 
@@ -42,9 +45,24 @@ io.sockets.on('connection', function (socket) {
 	socket.on('client event', function (data) {
 		//console.log(data);
 	});
+	/*
 	setInterval(function(){
 		io.sockets.emit('plot', {x: random(20,20000), timestamp: Date.now()})
 
 		//io.sockets.emit('plot', {x: Math.random()})
-	}, 100)
+	}, 200)
+	*/
+});
+
+// "read" get the current reading from the potentiometer
+board.on("ready", function() {
+	var potentiometer = new five.Sensor({
+			pin: "A0",
+			freq: 100
+	});
+	potentiometer.on("read", function( err, value ) {
+		io.sockets.emit('plot', {x: value})
+		//console.log( value, this.normalized );
+	});
+
 });

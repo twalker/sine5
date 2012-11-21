@@ -15,7 +15,8 @@ var theremin = (function(root){
 
 	var y = d3.scale.linear()
 		//.domain([-1, 1])
-		.domain([20, 20000])
+		//.domain([20, 20000])
+		.domain([0, 1024])
 		.range([height, 0]);
 
 	var line = this.line = d3.svg.line()
@@ -76,7 +77,7 @@ var theremin = (function(root){
 			.duration(500)
 			.ease("linear")
 			.attr("transform", "translate(" + x(0) + ")")
-			.each("end", plotRandom);
+			//.each("end", plotRandom);
 
 		// pop the old data point off the front
 		//console.log('len', data.length)
