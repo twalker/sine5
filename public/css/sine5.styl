@@ -1,20 +1,26 @@
 body
-	padding: 20px
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+	padding: 10px
+	font: 14px "Ubuntu", Helvetica, Arial, sans-serif
 	background rgba(0,0,0,0.95);
 	color green
 
+h1
+	margin 0
 #chart
 	//padding:20px
 	//border 1px solid #666
+
 button
 	color lighten(green, 50%)
 	border 1px solid green
 	border-radius 3px
 	background-color transparent
-
+	&.on
+		color #000
+		background-color lighten(green, 50%)
 #chart svg
-	font 10px sans-serif
+	//background-color lighten(green, 25%)
+	font-size 10px
 
 .line
 	fill none

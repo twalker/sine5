@@ -36,7 +36,7 @@ app.configure('development', function(){
 });
 
 app.get('/', function (req, res) {
-	res.render('index', { title: 'theremin' });
+	res.render('index', { title: 'sine5' });
 });
 
 
@@ -61,7 +61,8 @@ board.on("ready", function() {
 			freq: 100
 	});
 	potentiometer.on("read", function( err, value ) {
-		io.sockets.emit('plot', {x: value})
+		//io.sockets.emit('plot', {x: this.normalized })
+		io.sockets.emit('plot', {x: value })
 		//console.log( value, this.normalized );
 	});
 

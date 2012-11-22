@@ -1,12 +1,15 @@
-var theremin = (function(root){
+/**
+ * d3 chart of frequency (x axis) and time (y axis)
+ */
+var oscilloscope = (function(global){
+	'use strict';
 	var svg,
 		margin = {top: 10, right: 10, bottom: 20, left: 40},
 		width = 960 - margin.left - margin.right,
 		height = 500 - margin.top - margin.bottom,
 		n = 40,	//wtf is n? max len? points plotted?
 		data = [],
-		path,
-		socket;
+		path;
 
 	var x = d3.scale.linear()
 		.domain([1, n - 2])
@@ -19,18 +22,12 @@ var theremin = (function(root){
 		.domain([0, 1024])
 		.range([height, 0]);
 
-	var line = this.line = d3.svg.line()
+	var line = d3.svg.line()
 		.interpolate("basis")
 		.x(function(d, i) { return x(i); })
 		.y(function(d, i) { return y(d); });
 
 	function init(){
-		socket = io.connect('http://localhost');
-		socket.on('server event', function (data) {
-			console.log(data);
-			//socket.emit('client event', { from: 'client', to: 'server' });
-		});
-
 		svg = d3.select("#chart").append("svg")
 			.attr('class', 'chart')
 			.attr("width", width + margin.left + margin.right)
@@ -60,12 +57,10 @@ var theremin = (function(root){
 			.data([data])
 			.attr("class", "line")
 			.attr("d", line);
-		socket.on('plot', plotRandom);
-		//on();
 
 	}
 
-	var plotRandom = function plotRandom(msg){
+	var plot = function plot(msg){
 		//console.log('plot', msg);
 		// push a new data point onto the back
 		data.push(msg.x);
@@ -76,8 +71,8 @@ var theremin = (function(root){
 			.transition()
 			.duration(500)
 			.ease("linear")
-			.attr("transform", "translate(" + x(0) + ")")
-			//.each("end", plotRandom);
+			.attr("transform", "translate(" + x(0) + ")");
+			//.each("end", plot);
 
 		// pop the old data point off the front
 		//console.log('len', data.length)
@@ -85,22 +80,10 @@ var theremin = (function(root){
 		//data.shift();
 	};
 
-
-	var on = function on(){
-		console.log('TODO')
-		//socket = io.connect('http://localhost');
-		//socket.on('plot', plotRandom);
-	};
-
-	var off = function off(){
-		console.log('TODO')
-		socket.disconnect();
-	};
-
 	return {
 		init: init,
-		on: on,
-		off: off
+		plot: plot
 	};
+
 
 })(window);

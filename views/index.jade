@@ -1,8 +1,31 @@
-extends layout
+doctype 5
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/css/sine5.css')
+		script(src="/socket.io/socket.io.js")
+		script(src="http://d3js.org/d3.v3.js")
+		script(src="/js/oscilloscope.js")
+		script(src="/js/synth.js")
+		script(src="/js/sine5.js")
+		script
+			window.onload = function(){
+				sine5.init();
+			}
+	body
+		block content
 
 block content
-	h1= title
 	div#chart
+	h1= title
 	form
-		button(class='action', value='on') on
-		button(class='action', value='off') off
+		button.mute(value='mute') mute
+		label volume
+			input.volume(type="range", min=0, max=100, value=0)
+
+		label pitch
+			input.pitch(type="range", min=0, max=1024)
+		//-label reverb
+			input.reverb(type="range", min=0, max=1024)
+
+		button.disconnect(value='disconnect') disconnect

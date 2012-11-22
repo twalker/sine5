@@ -5,19 +5,12 @@ html
 		link(rel='stylesheet', href='/css/theremin.css')
 		script(src="/socket.io/socket.io.js")
 		script(src="http://d3js.org/d3.v3.js")
-		script(src="/js/theremin.js")
+		script(src="/js/oscilloscope.js")
+		script(src="/js/synth.js")
+		script(src="/js/sine5.js")
 		script
 			window.onload = function(){
-				theremin.init();
-				var buttons = [].slice.call(document.getElementsByClassName('action'));
-				buttons.forEach(function(el){
-					el.addEventListener('click', function(e){
-						e.preventDefault();
-						var action = e.currentTarget.value;
-						console.log(action);
-						theremin[action]();
-					});
-				});
+				sine5.init();
 			}
 	body
 		block content
