@@ -6,3 +6,4 @@ button.on{color:#000;background-color:#40ff40}
 .line{fill:none;stroke:#00e000;stroke-width:1.5px}
 .axis path,.axis line{fill:none;stroke:#008000;shape-rendering:crispEdges}
 .axis text{fill:#008000}
+.hide{display:none}

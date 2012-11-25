@@ -4,8 +4,16 @@
 var sine5 = (function(root){
 	'use strict';
 	var socket,
-		muted = false;
+		muted = false,
+		elements = {};
 	function init(){
+		elements = {
+			mute: document.querySelector('button.mute'),
+			volume: document.querySelector('input.volume'),
+			pitch: document.querySelector('input.pitch'),
+			disconnect: document.querySelector('button.disconnect')
+
+		};
 		socket = io.connect('http://localhost');
 		socket.on('server event', function (data) {
 			console.log(data);
@@ -22,9 +30,12 @@ var sine5 = (function(root){
 			synth.pitch(msg.x)
 		});
 		//socket.on('plot', sine5.plot);
-		document.querySelector('button.disconnect').addEventListener('click', function(e){
+		elements.disconnect.addEventListener('click', function(e){
 			e.preventDefault();
 			socket.disconnect();
+			dom.addClass(e.currentTarget, 'on');
+			dom.show(elements.pitch);
+
 		});
 		/*
 		var buttons = [].slice.call(document.getElementsByClassName('action'));
@@ -36,19 +47,20 @@ var sine5 = (function(root){
 			});
 		});
 		*/
-		document.querySelector('input.volume').addEventListener('change', function(e){
+		elements.volume.addEventListener('change', function(e){
 			console.log('volume changed', e.target.value / 100);
 			synth.volume(e.target.value / 100);
 		});
 
-		document.querySelector('button.mute').addEventListener('click', function(e){
+		elements.mute.addEventListener('click', function(e){
 			e.preventDefault();
+			dom.toggleClass(e.currentTarget, 'on');
 			muted = !muted;
 			console.log('setting vol to', muted ? 0 : parseInt(document.querySelector('input.volume').value) / 100);
 			synth.volume(muted ? 0 : parseInt(document.querySelector('input.volume').value) / 100);
 		});
 
-		document.querySelector('input.pitch').addEventListener('change', function(e){
+		elements.pitch.addEventListener('change', function(e){
 			console.log('pitch changed',e.target.value);
 			synth.pitch(e.target.value);
 			oscilloscope.plot({x: e.target.value });

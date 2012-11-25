@@ -3,6 +3,7 @@ html
 	head
 		title= title
 		link(rel='stylesheet', href='/css/sine5.css')
+		script(src="/js/dom.js")
 		script(src="/socket.io/socket.io.js")
 		script(src="http://d3js.org/d3.v3.js")
 		script(src="/js/oscilloscope.js")
@@ -13,19 +14,17 @@ html
 				sine5.init();
 			}
 	body
-		block content
+		div#chart
+		h1= title
+		form
+			button.mute(value='mute') mute
+			label volume
+				input.volume(type="range", min=0, max=100, value=0)
 
-block content
-	div#chart
-	h1= title
-	form
-		button.mute(value='mute') mute
-		label volume
-			input.volume(type="range", min=0, max=100, value=0)
+			button.disconnect(value='disconnect') disconnect
+			label pitch
+				input.pitch(type="range", min=0, max=1024)
+			//-label reverb
+				input.reverb(type="range", min=0, max=1024)
 
-		label pitch
-			input.pitch(type="range", min=0, max=1024)
-		//-label reverb
-			input.reverb(type="range", min=0, max=1024)
 
-		button.disconnect(value='disconnect') disconnect
