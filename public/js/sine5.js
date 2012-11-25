@@ -25,11 +25,11 @@ var sine5 = (function(root){
 		});
 		oscilloscope.init();
 
-		socket.on('plot', function(msg){
+		socket.on('freq:change', function(msg){
 			oscilloscope.plot(msg);
 			synth.pitch(msg.x)
 		});
-		//socket.on('plot', sine5.plot);
+		//socket.on('freq:change', sine5.plot);
 		elements.disconnect.addEventListener('click', function(e){
 			e.preventDefault();
 			socket.disconnect();

@@ -19,7 +19,8 @@ var oscilloscope = (function(global){
 	var y = d3.scale.linear()
 		//.domain([-1, 1])
 		//.domain([20, 20000])
-		.domain([0, 1024])
+		.domain([20, 4200]) //range of 88 key piano
+		//.domain([0, 1024])
 		.range([height, 0]);
 
 	var line = d3.svg.line()

@@ -19,14 +19,15 @@ This learning project mixes together some lovely open-source projects:
 x get a d3 real-time chart going with websockets
 x get Arduino working
 x get node talking to Arduino
-- connect and communicate with proximity sensor
-- map proximity data to sound frequency data
+x connect and communicate with proximity sensor
+x map proximity data to sound frequency data
 - volume: choose sensor and visualize data
 
 ###TOCLEAN:
 
 - x axis of chart should reflect something useful, or nothing
 - ui for controls
+- proximity sensor reading is course, slow, and kinda sucks
 
 ###TOLEARN:
 
@@ -47,8 +48,9 @@ http://www.emanueletessore.com/how-to-setup-a-node-js-and-arduino-development-en
 http://arduino.cc/playground/Learning/Linux
 https://github.com/rwldrn/johnny-five/
 
-sudo chmod a+rw /dev/ttyACM0
-sudo echo 'asd' > /dev/ttyACM0
+permission issues fixed with:
+`sudo chmod a+rw /dev/ttyACM0`
+`sudo echo 'asd' > /dev/ttyACM0`
 dmesg
 
 
@@ -66,6 +68,15 @@ http://developer.apple.com/library/safari/#documentation/AudioVideo/Conceptual/U
 http://creativejs.com/resources/web-audio-api-getting-started/
 http://www.html5rocks.com/en/tutorials/webaudio/intro/
 http://alxgbsn.co.uk/wavepad/js/main.js
+
+###frequency mapping
+http://en.wikipedia.org/wiki/Audio_frequency
+88 note piano is 27.5Hz (A0) - 4186.01Hz (C8)
+middle C = 261.626Hz
+
+approx sensor range:
+cm 73 - 199
+voltage 58 - 158
 
 
 ###piano

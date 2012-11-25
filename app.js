@@ -11,10 +11,6 @@ var express = require('express'),
 
 server.listen(process.env.PORT || 3000);
 
-var random = function(min, max){
-	return Math.random() * (max - min) + min;
-};
-
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -45,16 +41,39 @@ io.sockets.on('connection', function (socket) {
 	socket.on('client event', function (data) {
 		//console.log(data);
 	});
-	/*
-	setInterval(function(){
-		io.sockets.emit('plot', {x: random(20,20000), timestamp: Date.now()})
-
-		//io.sockets.emit('plot', {x: Math.random()})
-	}, 200)
-	*/
 });
 
+function cmToHz(value){
+	var cmRange = {min: 73, max:199},
+		//hzRange = {min: 20, max: 20000},
+		hzRange = {min: 27.5, max: 4186.01}, //range of 88 key piano
+		//Figure out how 'wide' each range is
+		leftSpan = cmRange.max - cmRange.min,
+		rightSpan = hzRange.max - hzRange.min;
+
+	// Convert the left range into a 0-1 range (float)
+	var scaled = (value - cmRange.min) / leftSpan;
+
+	// Convert the 0-1 range into a value in the right range.
+	var val = hzRange.min + (scaled * rightSpan);
+	return val;
+}
+
+board.on("ready", function() {
+
+	var sonor = new five.Sonar({pin:"A0", freq: 50});
+	//sonor.on("change", function( err, timestamp ) {
+	sonor.on("read", function( err, timestamp ) {
+		var freq = cmToHz(this.cm);
+		console.log('cm', this.cm, ' to ', freq, 'Hz');
+		io.sockets.emit('freq:change', {x: freq});
+	});
+
+});
+
+
 // "read" get the current reading from the potentiometer
+/*
 board.on("ready", function() {
 	var potentiometer = new five.Sensor({
 			pin: "A0",
@@ -67,3 +86,4 @@ board.on("ready", function() {
 	});
 
 });
+*/

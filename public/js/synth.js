@@ -54,6 +54,7 @@ var synth = (function(global){
 	}
 
 	function pitch(val){
+		console.log('freq', val);
 		sine.frequency.value = val;
 	}
 	function volume(val){
