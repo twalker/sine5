@@ -10,6 +10,9 @@ This learning project mixes together some lovely open-source projects:
 * [W3C Web Audio API](http://www.w3.org/TR/webaudio/) for sythesis (implemented in Chrome).
 * [D3.js](http://d3js.org/) for visualizing input.
 
+
+[here's a video](https://vimeo.com/54688130) for the brave of hearing.
+
 -------------
 
 
@@ -31,7 +34,7 @@ This learning project mixes together some lovely open-source projects:
 - proximity sensor reading is course, slow, and kinda sucks
 
 ###TOLEARN:
-
+git git s
 - d3 syntax and approach
 - dealing with a stream of real-time data
 
