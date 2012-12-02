@@ -6,21 +6,19 @@ var oscilloscope = (function(global){
 	var svg,
 		margin = {top: 10, right: 10, bottom: 20, left: 40},
 		width = 960 - margin.left - margin.right,
-		height = 500 - margin.top - margin.bottom,
-		n = 40,	//wtf is n? max len? points plotted?
+		height = 700 - margin.top - margin.bottom,
+		n = 100,	// data points?
 		data = [],
 		path;
 
 	var x = d3.scale.linear()
 		.domain([1, n - 2])
-		//.domain([1, (data.length > n) ? n -2 : 0])
 		.range([0, width]);
 
 	var y = d3.scale.linear()
-		//.domain([-1, 1])
-		//.domain([20, 20000])
+		//.domain([20, 20000]) // range of human hearing
 		.domain([20, 4200]) //range of 88 key piano
-		//.domain([0, 1024])
+		//.domain([0, 1024]) // voltage range
 		.range([height, 0]);
 
 	var line = d3.svg.line()

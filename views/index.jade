@@ -17,13 +17,14 @@ html
 		div#chart
 		h1= title
 		form
-			button.mute(value='mute') mute
-			label volume
-				input.volume(type="range", min=0, max=100, value=0)
-
-			button.disconnect(value='disconnect') disconnect
-			label pitch
-				input.pitch(type="range", min=20, max=20000)
+			fieldset
+				label volume
+					input.volume(type="range", min=0, max=1, step=0.1, value=1)
+				button.mute(value='mute') mute
+			fieldset
+				label pitch
+					input.pitch(type="range", min=20, max=20000)
+				button.disconnect(value='disconnect') disconnect
 			//-label reverb
 				input.reverb(type="range", min=0, max=1024)
 

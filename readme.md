@@ -16,16 +16,17 @@ This learning project mixes together some lovely open-source projects:
 
 ###TODO:
 
-x get a d3 real-time chart going with websockets
-x get Arduino working
-x get node talking to Arduino
-x connect and communicate with proximity sensor
-x map proximity data to sound frequency data
+- ~~get a d3 real-time chart going with websockets~~
+- ~~get Arduino working~~
+- ~~get node talking to Arduino~~
+- ~~connect and communicate with proximity sensor~~
+- ~~map proximity data to sound frequency data~~
 - volume: choose sensor and visualize data
+- check if volume and reverb work on mac because they're not on linux
 
 ###TOCLEAN:
 
-- x axis of chart should reflect something useful, or nothing
+- axis of chart should reflect something useful, or nothing
 - ui for controls
 - proximity sensor reading is course, slow, and kinda sucks
 
@@ -43,10 +44,12 @@ cdc_acm 1-1.5:1.0: ttyACM0: USB ACM device
 ##helpful articles:
 
 ###arduino
-http://blog.markloiseau.com/2012/05/install-arduino-ubuntu/
-http://www.emanueletessore.com/how-to-setup-a-node-js-and-arduino-development-environment-under-ubuntu-server-12-04/
-http://arduino.cc/playground/Learning/Linux
-https://github.com/rwldrn/johnny-five/
+
+- http://blog.markloiseau.com/2012/05/install-arduino-ubuntu/
+- http://www.emanueletessore.com/how-to-setup-a-node-js-and-arduino-development-environment-under-ubuntu-server-12-04/
+- http://arduino.cc/playground/Learning/Linux
+- https://github.com/rwldrn/johnny-five/
+- http://stuartmemo.com/controlling-web-audio-api-volume-using-the-html5-slider-element/
 
 permission issues fixed with:
 `sudo chmod a+rw /dev/ttyACM0`
@@ -68,6 +71,7 @@ http://developer.apple.com/library/safari/#documentation/AudioVideo/Conceptual/U
 http://creativejs.com/resources/web-audio-api-getting-started/
 http://www.html5rocks.com/en/tutorials/webaudio/intro/
 http://alxgbsn.co.uk/wavepad/js/main.js
+http://www.html5rocks.com/en/tutorials/webaudio/intro/
 
 ###frequency mapping
 http://en.wikipedia.org/wiki/Audio_frequency

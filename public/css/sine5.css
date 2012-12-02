@@ -1,5 +1,9 @@
 body{padding:10px;font:14px "Ubuntu",Helvetica,Arial,sans-serif;background:rgba(0,0,0,0.95);color:#008000}
 h1{margin:0}
+fieldset{border:none;float:left}
+label{text-align:right}
+input[type=range]{-webkit-appearance:none !important;position:relative;top:-3px;height:3px;background:#008000}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none !important;background:#40ff40;width:5px;height:20px;border-radius:5px}
 button{color:#40ff40;border:1px solid #008000;border-radius:3px;background-color:transparent;}
 button.on{color:#000;background-color:#40ff40}
 #chart svg{font-size:10px}

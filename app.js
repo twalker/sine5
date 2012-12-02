@@ -8,7 +8,6 @@ var express = require('express'),
 	five = require("johnny-five"),
 	board = new five.Board();
 
-
 server.listen(process.env.PORT || 3000);
 
 app.set('views', __dirname + '/views');
@@ -17,7 +16,6 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(app.router);
 app.locals.pretty = true;
-//app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(stylus.middleware({
 	src: __dirname + '/public',
 	compile: function(str, path){
@@ -33,14 +31,6 @@ app.configure('development', function(){
 
 app.get('/', function (req, res) {
 	res.render('index', { title: 'sine5' });
-});
-
-
-io.sockets.on('connection', function (socket) {
-	socket.emit('server event', { from: 'server', to: 'client' });
-	socket.on('client event', function (data) {
-		//console.log(data);
-	});
 });
 
 function cmToHz(value){
@@ -59,14 +49,14 @@ function cmToHz(value){
 	return val;
 }
 
+// "read" get the current reading from the proximity sensor
 board.on("ready", function() {
-
-	var sonor = new five.Sonar({pin:"A0", freq: 50});
-	//sonor.on("change", function( err, timestamp ) {
+	var sonor = new five.Sonar({pin:"A0", freq: 25});
 	sonor.on("read", function( err, timestamp ) {
 		var freq = cmToHz(this.cm);
-		console.log('cm', this.cm, ' to ', freq, 'Hz');
 		io.sockets.emit('freq:change', {x: freq});
+
+		console.log('cm', this.cm, ' to ', freq, 'Hz');
 	});
 
 });

@@ -8,8 +8,7 @@ var synth = (function(global){
 		sine,
 		pitch,
 		vol,
-		rev
-		;
+		rev;
 
 	function init(options){
 		var options = options || {};
@@ -35,32 +34,34 @@ var synth = (function(global){
 		//sine.connect(rev);
 		//rev.connect(vol);
 		//sine.connect(context.destination);
-		//
+
 		sine.connect(vol);
 		vol.connect(context.destination);
 
-		console.log('sine', sine)
+		//sine.noteOn(0);
+		//console.log('sine', sine)
 		//global.sine = sine;
 	}
 
 	function start(){
-		//sine.noteOn(0);
+		//sine.noteOn(0); // noteOn/noteOff doesn't seem to work in chromium linux.
 		volume(1);
 	}
 
 	function stop(){
-		//sine.noteOff(0);
 		volume(0);
 	}
 
 	function pitch(val){
-		console.log('freq', val);
+		//console.log('freq', val);
 		sine.frequency.value = val;
 	}
+	// not working--should try on mac instead of linux
 	function volume(val){
 		//var fraction = val / 100;
 		vol.gain.value = val;
 	}
+	// not implemented/working
 	function reverb(val){
 		rev.value = val;
 	}
