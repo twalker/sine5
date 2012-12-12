@@ -13,6 +13,9 @@ This learning project mixes together some lovely open-source projects:
 
 [here's a video](https://vimeo.com/54688130) for the brave of hearing.
 
+To run without an arduino board:
+`node app --noboard`
+
 -------------
 
 
@@ -34,12 +37,9 @@ This learning project mixes together some lovely open-source projects:
 - proximity sensor reading is course, slow, and kinda sucks
 
 ###TOLEARN:
-git git s
+
 - d3 syntax and approach
 - dealing with a stream of real-time data
-
-device:
-cdc_acm 1-1.5:1.0: ttyACM0: USB ACM device
 
 --------------
 
@@ -53,6 +53,11 @@ cdc_acm 1-1.5:1.0: ttyACM0: USB ACM device
 - http://arduino.cc/playground/Learning/Linux
 - https://github.com/rwldrn/johnny-five/
 - http://stuartmemo.com/controlling-web-audio-api-volume-using-the-html5-slider-element/
+- http://arduino.cc/en/Tutorial/Smoothing
+
+local usb device:
+cdc_acm 1-1.5:1.0: ttyACM0: USB ACM device
+cdc_acm 2-1.3:1.0: ttyACM0: USB ACM device
 
 permission issues fixed with:
 `sudo chmod a+rw /dev/ttyACM0`

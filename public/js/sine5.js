@@ -36,16 +36,16 @@ var sine5 = (function(root){
 		});
 
 		elements.volume.addEventListener('change', function(e){
-			console.log('volume changed', e.target.value);
-			synth.volume(e.target.value);
+			//console.log('volume changed', e.target.value);
+			if(!muted) synth.volume(e.target.value);
 		});
 
 		elements.mute.addEventListener('click', function(e){
 			e.preventDefault();
 			dom.toggleClass(e.currentTarget, 'on');
 			muted = !muted;
-			console.log('setting vol to', muted ? 0 : parseInt(document.querySelector('input.volume').value, 10));
-			synth.volume(muted ? 0 : parseInt(document.querySelector('input.volume').value, 10));
+			//console.log('setting vol to', muted ? 0 : elements.volume.value);
+			synth.volume(muted ? 0 : elements.volume.value);
 		});
 
 		elements.pitch.addEventListener('change', function(e){
