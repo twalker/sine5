@@ -5,8 +5,20 @@ var argv = require('optimist').argv,
 	io = require('socket.io').listen(server),
 	path = require('path'),
 	stylus = require('stylus'),
-	nib = require('nib');
+	nib = require('nib'),
 	five = require("johnny-five");
+
+var ranges = {
+	distance: {
+		min: 60, max: 120
+	},
+
+	pitch: {
+		// range of 88 key piano => min: 27.5, max: 4186.01
+		// human hearing range => min: 20, max: 20000
+		min: 27.5,	max: 4186.01
+	}
+};
 
 server.listen(process.env.PORT || 3000);
 
@@ -16,6 +28,7 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(app.router);
 app.locals.pretty = true;
+app.locals({ranges: ranges});
 app.use(stylus.middleware({
 	src: __dirname + '/public',
 	compile: function(str, path){
@@ -33,10 +46,10 @@ app.get('/', function (req, res) {
 	res.render('index', { title: 'sine5' });
 });
 
-// TODO: convert to factory
+// TODO: convert to factory, or try to get johnny-five.Fn exposed.
 function voltsToHz(value){
-	var vRange = {min: 60, max: 120},
-		hzRange = {min: 27.5, max: 4186.01}, //range of 88 key piano
+	var vRange = ranges.distance;
+		hzRange = ranges.pitch,
 		//Figure out how 'wide' each range is
 		leftSpan = vRange.max - vRange.min,
 		rightSpan = hzRange.max - hzRange.min;
@@ -49,8 +62,6 @@ function voltsToHz(value){
 
 	// Convert the 0-1 range into a value in the right range.
 	var val = hzRange.min + (scaled * rightSpan);
-	//return val;
-	//var val = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 	var val = (value - vRange.min) * (hzRange.max - hzRange.min) / (vRange.max - vRange.min) + hzRange.min;
 
 	return val;
@@ -61,14 +72,14 @@ if(argv.noboard) {
 	console.log('Bypassing board. Boring, boring, boring.');
 } else {
 	var board = new five.Board();
-
 	// "read" get the current reading from the proximity sensor
 	board.on("ready", function() {
-		var sonor = new five.Sonar({pin:"A0", freq: 20});
+		var sonor = new five.Sonar({pin:"A0", freq: 25});
 		sonor.on("read", function( err, v ) {
-			var freq = voltsToHz(v);
+			var volts = v; //this.voltage;
+			var freq = voltsToHz(volts);
 			io.sockets.emit('freq:change', {x: freq});
-			console.log('v', v, ' to ', freq, 'Hz');
+			//console.log('v', v, ' to ', freq, 'Hz');
 		});
 	});
 

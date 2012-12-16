@@ -16,6 +16,7 @@ html
 	body
 		div#chart
 		h1= title
+
 		form
 			fieldset
 				label volume
@@ -23,7 +24,7 @@ html
 				button.mute(value='mute') mute
 			fieldset
 				label pitch
-					input.pitch(type="range", min=20, max=20000)
+					input.pitch(type="range", min=ranges.pitch.min, max=ranges.pitch.max)
 				button.disconnect(value='disconnect') disconnect
 			//-label reverb
 				input.reverb(type="range", min=0, max=1024)

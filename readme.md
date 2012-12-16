@@ -13,8 +13,15 @@ This learning project mixes together some lovely open-source projects:
 
 [here's a video](https://vimeo.com/54688130) for the brave of hearing.
 
-To run without an arduino board:
+Requirements:
+
+- Arduino board w/ proximity sensor
+- Chrome
+- Node
+
+To run without an Arduino board:
 `node app --noboard`
+
 
 -------------
 
@@ -28,13 +35,10 @@ To run without an arduino board:
 - ~~connect and communicate with proximity sensor~~
 - ~~map proximity data to sound frequency data~~
 - volume: choose sensor and visualize data
-- check if volume and reverb work on mac because they're not on linux
-
-###TOCLEAN:
-
+- check if reverb works on mac because it doesn't on linux
 - axis of chart should reflect something useful, or nothing
-- ui for controls
-- proximity sensor reading is course, slow, and kinda sucks
+- ~~ui for controls~~
+- proximity sensor reading is coarse, latent, and kinda sucks. revisit when not pissed.
 
 ###TOLEARN:
 
@@ -66,31 +70,33 @@ dmesg
 
 
 ###chart
-http://alignedleft.com/tutorials/d3/
-http://bost.ocks.org/mike/path/
-https://gist.github.com/1642989
-http://bl.ocks.org/mbostock
-http://alignedleft.com/tutorials/d3/an-svg-primer/
+
+- http://alignedleft.com/tutorials/d3/
+- http://bost.ocks.org/mike/path/
+- https://gist.github.com/1642980
+- http://bl.ocks.org/mbostock
+- http://alignedleft.com/tutorials/d3/an-svg-primer/
 
 
 ###synthesis
-http://chromium.googlecode.com/svn/trunk/samples/audio/wavetable-synth.html
-http://developer.apple.com/library/safari/#documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/PlayingandSynthesizingSounds/PlayingandSynthesizingSounds.html
-http://creativejs.com/resources/web-audio-api-getting-started/
-http://www.html5rocks.com/en/tutorials/webaudio/intro/
-http://alxgbsn.co.uk/wavepad/js/main.js
-http://www.html5rocks.com/en/tutorials/webaudio/intro/
+
+- http://chromium.googlecode.com/svn/trunk/samples/audio/wavetable-synth.html  
+- http://developer.apple.com/library/safari/#documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/PlayingandSynthesizingSounds/PlayingandSynthesizingSounds.html  
+- http://creativejs.com/resources/web-audio-api-getting-started/  
+- http://www.html5rocks.com/en/tutorials/webaudio/intro/  
+- http://alxgbsn.co.uk/wavepad/js/main.js  
 
 ###frequency mapping
-http://en.wikipedia.org/wiki/Audio_frequency
-88 note piano is 27.5Hz (A0) - 4186.01Hz (C8)
-middle C = 261.626Hz
+
+http://en.wikipedia.org/wiki/Audio_frequency  
+88 note piano is 27.5Hz (A0) - 4186.01Hz (C8)  
+middle C = 261.626Hz  
 
 approx sensor range:
-cm 73 - 199
-voltage 58 - 158
+cm 73 - 199  
+voltage 58 - 158  
 
 
 ###piano
-https://developer.mozilla.org/th/demos/detail/html5-piano
-https://developer.cdn.mozilla.net/media/uploads/demos/M/i/MikeMnD/bbd077c574670ad3c70aab5aa64258be/html5-piano_1315774273_demo_package/index.html
+- https://developer.mozilla.org/th/demos/detail/html5-piano
+- https://developer.cdn.mozilla.net/media/uploads/demos/M/i/MikeMnD/bbd077c574670ad3c70aab5aa64258be/html5-piano_1315774273_demo_package/index.html
