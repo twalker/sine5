@@ -54,18 +54,19 @@ To run without an Arduino board:
 
 - http://blog.markloiseau.com/2012/05/install-arduino-ubuntu/
 - http://www.emanueletessore.com/how-to-setup-a-node-js-and-arduino-development-environment-under-ubuntu-server-12-04/
+- http://playground.arduino.cc/Linux/Debian
 - http://arduino.cc/playground/Learning/Linux
 - https://github.com/rwldrn/johnny-five/
 - http://stuartmemo.com/controlling-web-audio-api-volume-using-the-html5-slider-element/
 - http://arduino.cc/en/Tutorial/Smoothing
 
-local usb device:
-cdc_acm 1-1.5:1.0: ttyACM0: USB ACM device
-cdc_acm 2-1.3:1.0: ttyACM0: USB ACM device
+local usb device:  
+cdc_acm 1-1.5:1.0: ttyACM0: USB ACM device  
+cdc_acm 2-1.3:1.0: ttyACM0: USB ACM device  
 
-permission issues fixed with:
-`sudo chmod a+rw /dev/ttyACM0`
-`sudo echo 'asd' > /dev/ttyACM0`
+permission issues fixed with:  
+`sudo chmod a+rw /dev/ttyACM0`  
+`sudo echo 'asd' > /dev/ttyACM0`  
 dmesg
 
 

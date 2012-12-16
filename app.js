@@ -67,6 +67,25 @@ function voltsToHz(value){
 	return val;
 }
 
+// extra normalization to smooth values
+// TODO: find a clean way to implement this (minSamples?) in johnny-five.Sonor instead.
+var samples = [];
+var smooth = function smooth(v){
+	//console.log('raw', v);
+	//console.log('before', samples);
+	samples.push(v);
+	if(samples.length > 6){
+		samples.splice(0, samples.length - 6);
+	}
+	//console.log('after', samples);
+	var sum = samples.reduce(function(prev, current){
+		return prev + current;
+	});
+
+	return sum / samples.length;
+}
+
+
 // check for board skipping.
 if(argv.noboard) {
 	console.log('Bypassing board. Boring, boring, boring.');
@@ -74,9 +93,9 @@ if(argv.noboard) {
 	var board = new five.Board();
 	// "read" get the current reading from the proximity sensor
 	board.on("ready", function() {
-		var sonor = new five.Sonar({pin:"A0", freq: 25});
+		var sonor = new five.Sonar({pin:"A0", freq: 30});
 		sonor.on("read", function( err, v ) {
-			var volts = v; //this.voltage;
+			var volts = smooth(this.voltage);
 			var freq = voltsToHz(volts);
 			io.sockets.emit('freq:change', {x: freq});
 			//console.log('v', v, ' to ', freq, 'Hz');
