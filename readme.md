@@ -93,7 +93,7 @@ http://en.wikipedia.org/wiki/Audio_frequency
 88 note piano is 27.5Hz (A0) - 4186.01Hz (C8)  
 middle C = 261.626Hz  
 
-approx sensor range:
+approx sensor range:  
 cm 73 - 199  
 voltage 58 - 158  
 

@@ -1,7 +1,9 @@
+$body-bg-color = rgba(0,0,0,0.95)
+$light-green = lighten(green, 50%)
 body
 	padding: 10px
 	font: 14px "Ubuntu", Helvetica, Arial, sans-serif
-	background rgba(0,0,0,0.95);
+	background $body-bg-color
 	color green
 
 h1
@@ -23,19 +25,26 @@ input[type=range]
 	background green
 input[type="range"]::-webkit-slider-thumb
 	-webkit-appearance:none !important
-	background lighten(green, 50%)
-	width 5px
+	background $light-green
+	width 7px
 	height 20px
-	border-radius 5px
+	border-radius 2px
+
+select
+	color green
+
+	background-color transparent
+	option
+		background-color $body-bg-color
 
 button
-	color lighten(green, 50%)
+	color $light-green
 	border 1px solid green
 	border-radius 3px
 	background-color transparent
-	&.on
+	&.active
 		color #000
-		background-color lighten(green, 50%)
+		background-color $light-green
 #chart svg
 	//background-color lighten(green, 25%)
 	font-size 10px

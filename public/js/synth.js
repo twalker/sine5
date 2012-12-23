@@ -21,16 +21,14 @@ var synth = (function(global){
 			throw new Error('Browser does not support AudioContext, use Chrome');
 		}
 
-
 		//rev = context.createConvolver();
 		vol = context.createGainNode();
 		vol.gain.value = options.gain || 0;
 
 		sine = context.createOscillator();
-		sine.type = 0; // doesn't work, defaulting to 4
+		sine.type = options.wave || 0;
 
 		//sine.connect(context.destination);
-
 		//sine.connect(rev);
 		//rev.connect(vol);
 		//sine.connect(context.destination);
@@ -38,40 +36,51 @@ var synth = (function(global){
 		sine.connect(vol);
 		vol.connect(context.destination);
 
-		//sine.noteOn(0);
+		sine.noteOn(0);
 		//console.log('sine', sine)
 		//global.sine = sine;
 	}
 
 	function start(){
-		//sine.noteOn(0); // noteOn/noteOff doesn't seem to work in chromium linux.
-		volume(1);
+		sine.noteOn(0);
+		//sine.connect(vol);
 	}
 
 	function stop(){
-		volume(0);
+		//sine.disconnect();
+		sine.noteOff(0)
 	}
 
 	function pitch(val){
 		//console.log('freq', val);
 		sine.frequency.value = val;
 	}
+
 	// not working--should try on mac instead of linux
 	function volume(val){
 		//var fraction = val / 100;
 		vol.gain.value = val;
+	}
+	function wave(val){
+		// TOREVISIT: changing wave seems to retain the initial wave
+		//sine.noteOff(0);
+		//sine.disconnect();
+		//sine = context.createOscillator();
+		sine.type = val;
+
+		//sine.connect(vol);
+		//sine.noteOn(0);
 	}
 	// not implemented/working
 	function reverb(val){
 		rev.value = val;
 	}
 
-
 	return {
 		init: init,
 		volume: volume,
 		pitch: pitch,
-		reverb: reverb,
+		wave: wave,
 		start: start,
 		stop: stop
 	};

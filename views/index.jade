@@ -5,7 +5,7 @@ html
 		link(rel='stylesheet', href='/css/sine5.css')
 		script(src="/js/dom.js")
 		script(src="/socket.io/socket.io.js")
-		script(src="http://d3js.org/d3.v3.js")
+		script(src="/js/d3.v3.js")
 		script(src="/js/oscilloscope.js")
 		script(src="/js/synth.js")
 		script(src="/js/sine5.js")
@@ -20,12 +20,18 @@ html
 		form
 			fieldset
 				label volume
-					input.volume(type="range", min=0, max=1, step=0.1, value=1)
+					input.volume(type="range", min=0, max=1, step=0.001, value=0.6)
 				button.mute(value='mute') mute
 			fieldset
 				label pitch
 					input.pitch(type="range", min=ranges.pitch.min, max=ranges.pitch.max)
-				button.disconnect(value='disconnect') disconnect
+
+			fieldset
+				label wave
+					select.wave
+						- var waves = "sine square sawtooth triangle custom".split(' ')
+						each wave, i in waves
+							option(value=i, selected= i==0) #{wave}
 			//-label reverb
 				input.reverb(type="range", min=0, max=1024)
 

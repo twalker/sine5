@@ -3,9 +3,11 @@ h1{margin:0}
 fieldset{border:none;float:left}
 label{text-align:right}
 input[type=range]{-webkit-appearance:none !important;position:relative;top:-3px;height:3px;background:#008000}
-input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none !important;background:#40ff40;width:5px;height:20px;border-radius:5px}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none !important;background:#40ff40;width:7px;height:20px;border-radius:2px}
+select{color:#008000;background-color:transparent;}
+select option{background-color:rgba(0,0,0,0.95)}
 button{color:#40ff40;border:1px solid #008000;border-radius:3px;background-color:transparent;}
-button.on{color:#000;background-color:#40ff40}
+button.active{color:#000;background-color:#40ff40}
 #chart svg{font-size:10px}
 .line{fill:none;stroke:#00e000;stroke-width:1.5px}
 .axis path,.axis line{fill:none;stroke:#008000;shape-rendering:crispEdges}

@@ -3,10 +3,11 @@
  */
 var oscilloscope = (function(global){
 	'use strict';
+	// was 960 x 700
 	var svg,
 		margin = {top: 10, right: 10, bottom: 20, left: 40},
-		width = 960 - margin.left - margin.right,
-		height = 700 - margin.top - margin.bottom,
+		width = 640 - margin.left - margin.right,
+		height = 480 - margin.top - margin.bottom,
 		n = 100,	// data points?
 		data = [],
 		path;
