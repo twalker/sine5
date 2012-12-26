@@ -12,6 +12,7 @@ var sine5 = (function(global){
 		});
 		console.log(fixedScale)
 
+
 	function init(){
 		var doc = global.document;
 		var elements = {
@@ -21,6 +22,14 @@ var sine5 = (function(global){
 			wave: doc.querySelector('select.wave'),
 			note: doc.querySelector('aside#note')
 		};
+
+		var showNote = function showNote(freq){
+			var notes = fixedScale.filter(function(v,i,a){
+				// lenient comparison for more positive hits
+				return Math.abs(parseInt(v.freq) - parseInt(freq)) < 6;
+			});
+			elements.note.innerHTML = (notes.length) ? notes[0].note : '';//freq;
+		}
 
 		socket = io.connect('http://localhost');
 
@@ -33,9 +42,11 @@ var sine5 = (function(global){
 		oscilloscope.init();
 
 		socket.on('freq:change', function(msg){
+			var freq = msg.x;
 			oscilloscope.plot(msg);
-			synth.pitch(msg.x);
-			elements.pitch.value = msg.x;
+			synth.pitch(freq);
+			elements.pitch.value = freq;
+			showNote(freq);
 		});
 
 		elements.volume.addEventListener('change', function(e){
@@ -56,18 +67,8 @@ var sine5 = (function(global){
 			var freq = e.target.value;
 			synth.pitch(freq);
 			oscilloscope.plot({x: freq });
-			//console.log(freq.toFixed(2))
-			
-			var notes = fixedScale.filter(function(v,i,a){
-				// lenient comparison for more positive hits
-				return Math.abs(parseInt(v.freq) - parseInt(freq)) < 5;
-			});
 
-
-			//console.log('found', notes[0].note);
-
-			elements.note.innerHTML = (notes.length) ? notes[0].note : '';//freq;
-
+			showNote(freq);
 		});
 
 		elements.wave.addEventListener('change', function(e){
