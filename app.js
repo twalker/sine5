@@ -16,7 +16,7 @@ var ranges = {
 	pitch: {
 		// range of 88 key piano => min: 27.5, max: 4186.01
 		// human hearing range => min: 20, max: 20000
-		min: 27.5,	max: 4186.01
+		min: 27,	max: 4187
 	}
 };
 
