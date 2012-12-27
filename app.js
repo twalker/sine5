@@ -28,7 +28,10 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(app.router);
 app.locals.pretty = true;
-app.locals({ranges: ranges});
+app.locals({
+	ranges: ranges,
+	noboard: !!argv.noboard
+});
 app.use(stylus.middleware({
 	src: __dirname + '/public',
 	compile: function(str, path){

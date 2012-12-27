@@ -13,8 +13,10 @@ var sine5 = (function(global){
 		console.log(fixedScale)
 
 
-	function init(){
+	function init(options){
 		var doc = global.document;
+		var options = options || {};
+
 		var elements = {
 			mute: doc.querySelector('button.mute'),
 			volume: doc.querySelector('input.volume'),
@@ -41,13 +43,28 @@ var sine5 = (function(global){
 
 		oscilloscope.init();
 
-		socket.on('freq:change', function(msg){
-			var freq = msg.x;
-			oscilloscope.plot(msg);
-			synth.pitch(freq);
-			elements.pitch.value = freq;
-			showNote(freq);
-		});
+		if(options.noboard) {
+			// use a pitch slider
+			elements.pitch.addEventListener('change', function(e){
+				//console.log('pitch changed',e.target.value);
+				var freq = e.target.value;
+				synth.pitch(freq);
+				oscilloscope.plot({x: freq });
+
+				showNote(freq);
+			});
+
+		} else {
+			// use websocket messages
+			socket.on('freq:change', function(msg){
+				var freq = msg.x;
+				oscilloscope.plot(msg);
+				synth.pitch(freq);
+				elements.pitch.value = freq;
+				showNote(freq);
+			});
+		}
+
 
 		elements.volume.addEventListener('change', function(e){
 			//console.log('volume changed', e.target.value);
@@ -62,14 +79,6 @@ var sine5 = (function(global){
 			synth.volume(muted ? 0 : elements.volume.value);
 		});
 
-		elements.pitch.addEventListener('change', function(e){
-			//console.log('pitch changed',e.target.value);
-			var freq = e.target.value;
-			synth.pitch(freq);
-			oscilloscope.plot({x: freq });
-
-			showNote(freq);
-		});
 
 		elements.wave.addEventListener('change', function(e){
 			synth.wave(e.currentTarget.value)

@@ -28,8 +28,7 @@ var oscilloscope = (function(global){
 		.y(function(d, i) { return y(d); });
 
 	function init(){
-		svg = d3.select("#chart").append("svg")
-			.attr('class', 'chart')
+		svg = d3.select("#oscilloscope")
 			.attr("width", width + margin.left + margin.right)
 			.attr("height", height + margin.top + margin.bottom)
 			.append("g")
