@@ -19,7 +19,7 @@ Requirements:
 - Chrome
 - Node
 
-To run without an Arduino board:
+To run without an Arduino board & sensors:  
 `node app --noboard`
 
 
@@ -43,7 +43,7 @@ To run without an Arduino board:
 ###TOLEARN:
 
 - d3 syntax and approach
-- dealing with a stream of real-time data
+- ~~dealing with a stream of real-time data~~
 
 --------------
 
