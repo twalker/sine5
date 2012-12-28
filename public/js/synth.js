@@ -42,13 +42,14 @@ var synth = (function(global){
 	}
 
 	function start(){
+		//sine.disconnect();
 		sine.noteOn(0);
 		//sine.connect(vol);
 	}
 
 	function stop(){
-		//sine.disconnect();
 		sine.noteOff(0)
+		//sine.disconnect();
 	}
 
 	function pitch(val){

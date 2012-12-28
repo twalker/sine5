@@ -96,6 +96,7 @@ if(argv.noboard) {
 	var board = new five.Board();
 	// "read" get the current reading from the proximity sensor
 	board.on("ready", function() {
+		// proximity sensor
 		var sonor = new five.Sonar({pin:"A0", freq: 30});
 		sonor.on("read", function( err, v ) {
 			var volts = smooth(this.voltage);
@@ -104,31 +105,15 @@ if(argv.noboard) {
 			//console.log('v', v, ' to ', freq, 'Hz');
 		});
 
+		// air pressure sensor
 		var sensor = new five.Sensor({pin:"A1", freq: 100});
-		sensor.scale(0,1);
+		sensor.scale(-1, 1);
 
 		sensor.on("change", function(err, val){
-			console.log('air', val);
-			console.log({argValue: val, normalized: this.normalized, scaled: this.scaled });
-			io.sockets.emit('volume:change', {volume: this.scaled});
+			//console.log({argValue: val, normalized: this.normalized, scaled: this.scaled });
+			io.sockets.emit('volume:change', {volume: (this.scaled > 0) ? this.scaled.toFixed(3) : 0});
 		});
 	});
-
-	// "read" get the current reading from the potentiometer
-	/*
-	board.on("ready", function() {
-		var potentiometer = new five.Sensor({
-				pin: "A0",
-				freq: 100
-		});
-		potentiometer.on("read", function( err, value ) {
-			//io.sockets.emit('plot', {x: this.normalized })
-			io.sockets.emit('plot', {x: value })
-			//console.log( value, this.normalized );
-		});
-
-	});
-	*/
 }
 
 

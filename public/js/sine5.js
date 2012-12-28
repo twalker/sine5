@@ -64,7 +64,8 @@ var sine5 = (function(global){
 
 			socket.on('volume:change', function(msg){
 				var vol = msg.volume;
-				synth.volume(vol);
+				if(!muted) synth.volume(vol);
+
 				elements.volume.value = vol;
 			});
 		}

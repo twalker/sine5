@@ -8,13 +8,13 @@ body
 
 h1
 	margin 0
-	padding-left 28px	
-	background transparent url(../img/favicon.png) left top no-repeat 
+	padding-left 28px
+	background transparent url(../img/favicon.png) left top no-repeat
 
 aside#note
 	position absolute
 	font-size 3em
-	top 250px
+	top 200px
 	left 300px
 	color $light-green
 	sub
@@ -32,12 +32,13 @@ fieldset.pitch
 label
 	text-align right
 
-input[type=range]
+input[type="range"]
 	-webkit-appearance:none !important
 	position relative
 	top -3px
 	height 3px
 	background green
+
 input[type="range"]::-webkit-slider-thumb
 	-webkit-appearance:none !important
 	background $light-green
@@ -69,7 +70,6 @@ svg#oscilloscope
 	fill none
 	stroke lighten(green, 25%)
 	stroke-width 1.5px
-	//shape-rendering crispEdges
 
 .axis path
 .axis line
