@@ -55,12 +55,17 @@ var sine5 = (function(global){
 
 		} else {
 			// use websocket messages
-			socket.on('freq:change', function(msg){
-				var freq = msg.x;
-				oscilloscope.plot(msg);
+			socket.on('frequency:change', function(msg){
+				var freq = msg.frequency;
+				oscilloscope.plot({x: freq});
 				synth.pitch(freq);
-				elements.pitch.value = freq;
 				showNote(freq);
+			});
+
+			socket.on('volume:change', function(msg){
+				var vol = msg.volume;
+				synth.volume(vol);
+				elements.volume.value = vol;
 			});
 		}
 

@@ -100,8 +100,17 @@ if(argv.noboard) {
 		sonor.on("read", function( err, v ) {
 			var volts = smooth(this.voltage);
 			var freq = voltsToHz(volts);
-			io.sockets.emit('freq:change', {x: freq});
+			io.sockets.emit('frequency:change', {frequency: freq});
 			//console.log('v', v, ' to ', freq, 'Hz');
+		});
+
+		var sensor = new five.Sensor({pin:"A1", freq: 100});
+		sensor.scale(0,1);
+
+		sensor.on("change", function(err, val){
+			console.log('air', val);
+			console.log({argValue: val, normalized: this.normalized, scaled: this.scaled });
+			io.sockets.emit('volume:change', {volume: this.scaled});
 		});
 	});
 
