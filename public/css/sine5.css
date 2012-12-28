@@ -1,5 +1,5 @@
 body{padding:10px;font:14px "Ubuntu",Helvetica,Arial,sans-serif;background:rgba(0,0,0,0.95);color:#008000}
-h1{margin:0}
+h1{margin:0;padding-left:28px;background:transparent url("../img/favicon.png") left top no-repeat}
 aside#note{position:absolute;font-size:3em;top:250px;left:300px;color:#40ff40;}
 aside#note sub{font-size:.5em}
 fieldset{border:none;float:left}
