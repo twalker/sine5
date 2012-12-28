@@ -10,7 +10,6 @@ var sine5 = (function(global){
 		fixedScale = scale.map(function(v,i,a){
 			return {note: v.note.replace('</sub>/','</sub>-'), freq: +(v.freq).toFixed(2)};
 		});
-		console.log(fixedScale)
 
 
 	function init(options){
