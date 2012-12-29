@@ -2,6 +2,7 @@
  * dom utilities to ween off jQuery laziness.
  */
 define([], function(){
+	'use strict';
  	var dom = {
 		hasClass: function(el, cssclass) {
 			var pattern = new RegExp(cssclass, "g");

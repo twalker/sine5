@@ -4,28 +4,13 @@ html
 		title= title
 		link(rel="icon", type="image/png", href="/img/favicon.png")
 		link(rel='stylesheet', href='/css/sine5.css')
-		//-
-			script(src="/js/dom.js")	
-			script(src="/socket.io/socket.io.js")
-			script(src="/js/d3.v3.js")
-			script(src="/js/oscilloscope.js")
-			script(src="/js/synth.js")
-			script(src="/js/sine5.js")
-			script
-				window.onload = function(){
-					sine5.init({ noboard: #{noboard} });
-				}
 		script
-			var require = {
-				deps: ["domReady!", "app", "socket.io"],
-				paths: {
-					"socket.io": "../socket.io/socket.io.js"
-				},
-				callback: function(doc, app){
-					app.init({ noboard: #{noboard} });
-				}
+			var requirejs = {
+				deps: ["socket.io"],
+				paths: {"socket.io": "../socket.io/socket.io.js"},
+				config: {'main': { noboard: #{noboard} }}
 			};
-		script(src="/js/require.js", data-main="/js/config")
+		script(src="/js/require.js", data-main="/js/main")
 		body
 		svg#oscilloscope
 		aside#note
@@ -49,5 +34,3 @@ html
 							option(value=i, selected= i==0) #{wave}
 			//-label reverb
 				input.reverb(type="range", min=0, max=1024)
-
-
