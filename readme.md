@@ -1,6 +1,6 @@
 ##sine5
 
-An experimental Theremin using a proximity sensor and javascript.
+An experimental Theremin using a proximity sensor, an air sensor, and javascript.
 
 This learning project mixes together some lovely open-source projects:
 
@@ -10,6 +10,8 @@ This learning project mixes together some lovely open-source projects:
 * [W3C Web Audio API](http://www.w3.org/TR/webaudio/) for sythesis (implemented in Chrome).
 * [D3.js](http://d3js.org/) for visualizing input.
 
+
+![sine5 screenshot](https://github.com/twalker/sine5/tree/master/public/img/sine5_screenshot.png "sine5 screenshot")
 
 [here's a video](https://vimeo.com/54688130) for the brave of hearing.
 
@@ -34,7 +36,7 @@ To run without an Arduino board & sensors:
 - ~~get node talking to Arduino~~
 - ~~connect and communicate with proximity sensor~~
 - ~~map proximity data to sound frequency data~~
-- volume: choose sensor and visualize data
+- ~~volume: choose sensor and visualize data~~
 - check if reverb works on mac because it doesn't on linux
 - axis of chart should reflect something useful, or nothing
 - ~~ui for controls~~
@@ -42,7 +44,7 @@ To run without an Arduino board & sensors:
 
 ###TOLEARN:
 
-- d3 syntax and approach
+- ~~d3 syntax and approach~~
 - ~~dealing with a stream of real-time data~~
 
 --------------
