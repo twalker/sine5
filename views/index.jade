@@ -4,17 +4,29 @@ html
 		title= title
 		link(rel="icon", type="image/png", href="/img/favicon.png")
 		link(rel='stylesheet', href='/css/sine5.css')
-		script(src="/js/dom.js")
-		script(src="/socket.io/socket.io.js")
-		script(src="/js/d3.v3.js")
-		script(src="/js/oscilloscope.js")
-		script(src="/js/synth.js")
-		script(src="/js/sine5.js")
+		//-
+			script(src="/js/dom.js")	
+			script(src="/socket.io/socket.io.js")
+			script(src="/js/d3.v3.js")
+			script(src="/js/oscilloscope.js")
+			script(src="/js/synth.js")
+			script(src="/js/sine5.js")
+			script
+				window.onload = function(){
+					sine5.init({ noboard: #{noboard} });
+				}
 		script
-			window.onload = function(){
-				sine5.init({ noboard: #{noboard} });
-			}
-	body
+			var require = {
+				deps: ["domReady!", "app", "socket.io"],
+				paths: {
+					"socket.io": "../socket.io/socket.io.js"
+				},
+				callback: function(doc, app){
+					app.init({ noboard: #{noboard} });
+				}
+			};
+		script(src="/js/require.js", data-main="/js/config")
+		body
 		svg#oscilloscope
 		aside#note
 		h1(title= title) 5

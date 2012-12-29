@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "start": "node app--"
+    "start": "node app --noboard"
   },
   "dependencies": {
     "express": "3.0.5",
@@ -13,5 +13,11 @@
     "nib": "~0.8.2",
     "johnny-five": "~0.5.14",
     "optimist": "~0.3.5"
+  },
+  "devDependencies": {
+    "grunt": "git://github.com/gruntjs/grunt#master",
+    "grunt-contrib-uglify": "~0.1.0",
+    "grunt-contrib-concat": "~0.1.1",
+    "grunt-contrib-requirejs": "~0.3.4"
   }
 }

@@ -1,7 +1,7 @@
 /**
  * d3 chart of frequency (x axis) and time (y axis)
  */
-var oscilloscope = (function(global){
+ define(['d3'], function(){
 	'use strict';
 	// was 960 x 700
 	var svg,
@@ -83,6 +83,4 @@ var oscilloscope = (function(global){
 		init: init,
 		plot: plot
 	};
-
-
-})(window);
+ });

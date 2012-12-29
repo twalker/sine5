@@ -1,7 +1,7 @@
 /**
  * audio api wrapper for a sine wave emulating a theremin
  */
-var synth = (function(global){
+define([], function(){
 	'use strict';
 	// http://developer.apple.com/library/safari/#documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/PlayingandSynthesizingSounds/PlayingandSynthesizingSounds.html
 	var context,
@@ -13,9 +13,9 @@ var synth = (function(global){
 	function init(options){
 		var options = options || {};
 
-		if('AudioContext' in global) {
+		if('AudioContext' in window) {
 			context = new AudioContext();
-		} else if('webkitAudioContext' in global){
+		} else if('webkitAudioContext' in window){
 			context = new webkitAudioContext();
 		} else{
 			throw new Error('Browser does not support AudioContext, use Chrome');
@@ -38,7 +38,7 @@ var synth = (function(global){
 
 		sine.noteOn(0);
 		//console.log('sine', sine)
-		//global.sine = sine;
+		//window.sine = sine;
 	}
 
 	function start(){
@@ -85,4 +85,5 @@ var synth = (function(global){
 		start: start,
 		stop: stop
 	};
-})(window);
+
+});
