@@ -2,6 +2,10 @@
 
 An experimental Theremin using a proximity sensor, an air sensor, and javascript.
 
+![sine5 screenshot](https://raw.github.com/twalker/sine5/master/public/img/sine5_screenshot.png "sine5 screenshot")
+
+[here's a video](https://vimeo.com/54688130) for the brave of hearing.
+
 This learning project mixes together some lovely open-source projects:
 
 * [Arduino](http://arduino.cc/) for hardware IO.
@@ -10,10 +14,6 @@ This learning project mixes together some lovely open-source projects:
 * [W3C Web Audio API](http://www.w3.org/TR/webaudio/) for sythesis (implemented in Chrome).
 * [D3.js](http://d3js.org/) for visualizing input.
 
-
-![sine5 screenshot](https://github.com/twalker/sine5/tree/master/public/img/sine5_screenshot.png "sine5 screenshot")
-
-[here's a video](https://vimeo.com/54688130) for the brave of hearing.
 
 Requirements:
 
