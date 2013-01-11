@@ -42,6 +42,14 @@ To run without an Arduino board & sensors:
 - ~~ui for controls~~
 - proximity sensor reading is coarse, latent, and kinda sucks. revisit when not pissed.
 
+### trying to tasklist in github
+
+- [ ] like example
+- [x] like example with x
+- [] without space in brackets
+
+[ ] without dash (bullet)
+
 ###TOLEARN:
 
 - ~~d3 syntax and approach~~
