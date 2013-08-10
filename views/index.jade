@@ -1,36 +1,36 @@
 doctype 5
 html
-	head
-		title= title
-		link(rel="icon", type="image/png", href="/img/favicon.png")
-		link(rel='stylesheet', href='/css/sine5.css')
-		script
-			var requirejs = {
-				deps: ["socket.io"],
-				paths: {"socket.io": "../socket.io/socket.io.js"},
-				config: {'main': { noboard: #{noboard} }}
-			};
-		script(src="/js/require.js", data-main="/js/main")
-		body
-		svg#oscilloscope
-		aside#note
-		h1(title= title) 5
-		form
-			if noboard
-				fieldset.pitch
-					label pitch
-						input.pitch(type="range", min=ranges.pitch.min, max=ranges.pitch.max)
+  head
+    title= title
+    link(rel="icon", type="image/png", href="/img/favicon.png")
+    link(rel='stylesheet', href='/css/sine5.css')
+    script
+      var requirejs = {
+        deps: ["socket.io"],
+        paths: {"socket.io": "../socket.io/socket.io.js"},
+        config: {'main': { noboard: #{noboard} }}
+      };
+    script(src="/js/require.js", data-main="/js/main")
+    body
+    svg#oscilloscope
+    aside#note
+    h1(title= title) 5
+    form
+      if noboard
+        fieldset.pitch
+          label pitch
+            input.pitch(type="range", min=ranges.pitch.min, max=ranges.pitch.max)
 
-			fieldset
-				label volume
-					input.volume(type="range", min=0, max=1, step=0.001)
-				button.mute(value='mute') mute
+      fieldset
+        label volume
+          input.volume(type="range", min=0, max=1, step=0.001)
+        button.mute(value='mute') mute
 
-			fieldset
-				label wave
-					select.wave
-						- var waves = "sine square sawtooth triangle custom".split(' ')
-						each wave, i in waves
-							option(value=i, selected= i==0) #{wave}
-			//-label reverb
-				input.reverb(type="range", min=0, max=1024)
+      fieldset
+        label wave
+          select.wave
+            - var waves = "sine square sawtooth triangle custom".split(' ')
+            each wave, i in waves
+              option(value=i, selected= i==0) #{wave}
+      //-label reverb
+        input.reverb(type="range", min=0, max=1024)
